@@ -9,6 +9,8 @@ import SearchFormView from "./views/SearchFormView";*/
 import TourApp from "./views/TourApp";
 import TourAppContainer from "./views/TourAppContainer";
 import TourDetailContent from "./views/TourDetailContent";
+import TourList from "./views/TourList";
+
 /*
 render( <Router history={browserHistory} >
             <Route path="/" component={App}>
@@ -23,7 +25,9 @@ render( <Router history={browserHistory} >
 
 ReactDOM.render( <Router history={browserHistory} >
                     <Route component={TourAppContainer}>
-                        <Route path="/" component={TourApp} />
-                        <Route path="/detail/:content_id" component = {TourDetailContent} />
+                        <Route path="/" component={TourApp}>
+                            <IndexRoute component={TourList}/>
+                            <Route path="detail/:content_id" component = {TourDetailContent} />
+                        </Route>
                     </Route>
                 </Router>, document.getElementById("root") );

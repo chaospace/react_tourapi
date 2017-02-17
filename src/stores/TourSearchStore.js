@@ -10,6 +10,7 @@ class TourSearchStore extends ReduceStore {
 
     getInitialState(){
         return {
+            showSearchForm:false,
             areas:[],
             sigungus:[],
             areaCode:-1,
@@ -86,6 +87,13 @@ class TourSearchStore extends ReduceStore {
             case constants.UPDATE_SEARCH_CONTENT_ID:
                 state = update( this.getState(),{
                     contentId:{$set:action.data.contentId}
+                });
+            break;
+
+            case constants.TOGGLE_SEARCH_FORM:
+                console.log("업데이트 검색창");
+                state = update( this.getState(),{
+                    showSearchForm: {$apply: (currentValue) => (currentValue !== false)? false : true}
                 });
             break;
 

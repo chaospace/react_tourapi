@@ -25,6 +25,14 @@ class TourEventStore extends ReduceStore {
         }
     }
 
+    requestListDatabyPage( page ){
+        let searchState = TourSearchStore.getState();
+        let areaCode = searchState.areaCode > -1 ? searchState.areaCode : '';
+        let sigunguCode = searchState.sigunguCode > -1 ? searchState.sigunguCode : '';
+        let contentId = searchState.contentId > -1 ? searchState.contentId : '';
+        let query = `areaCode=${areaCode}&sigunguCode=${sigunguCode}&contentTypeId=${contentId}&pageNo=${page}`;
+        TourSearchActionCreator.fetchTourListWithParams( query );
+    }
 
     reduce( state, action ){
 
@@ -37,13 +45,12 @@ class TourEventStore extends ReduceStore {
             case constants.UPDATE_AREA_CODE:
             case constants.UPDATE_SIGUNGU_CODE:
             case constants.UPDATE_SEARCH_CONTENT_ID:
-                let searchState = TourSearchStore.getState();
-                pageNo = 1;
-                let areaCode = searchState.areaCode > -1 ? searchState.areaCode : '';
-                let sigunguCode = searchState.sigunguCode > -1 ? searchState.sigunguCode : '';
-                let contentId = searchState.contentId > -1 ? searchState.contentId : '';
-                let query = `areaCode=${areaCode}&sigunguCode=${sigunguCode}&contentTypeId=${contentId}&pageNo=${pageNo}`;
-                TourSearchActionCreator.fetchTourListWithParams( query );
+                this.requestListDatabyPage(1);
+            break;
+
+            case constants.UPDATE_PAGE_NO:
+                pageNo = action.data.pageNo;
+                this.requestListDatabyPage(pageNo);
             break;
 
             case constants.FETCH_TOUR_LIST_SUCCESS:

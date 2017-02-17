@@ -71,9 +71,6 @@ class TourSearchStore extends ReduceStore {
                 TourSearchActionCreator.fetchTourList(state.areaCode, state.sigunguCode);
             break;
 
-            case constants.FETCH_TOUR_LIST_SUCCESS:
-                console.log( action.data );
-            break;
         }
         return state;
     }

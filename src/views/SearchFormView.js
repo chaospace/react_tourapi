@@ -1,24 +1,18 @@
 import React,{Component, PropTypes} from "react";
+import TourSearchActionCreator from "../actions/TourSearchActionCreator";
 
 class SearchFormView extends Component {
 
-    constructor(){
-        super(...arguments);
-        this.state ={
-            showDetails:false
-        }
-    }
-
     onChangeAreaList( event ){
-        this.props.chanageCallbacks.toggleArea( parseInt(event.target.value) );
+        TourSearchActionCreator.updateAreaCode(parseInt(event.target.value));
     }
 
     onChangeSigunAreaList( event ){
-        this.props.chanageCallbacks.toggleSigungu( parseInt(event.target.value) );
+        TourSearchActionCreator.updateSigunguCode( parseInt(event.target.value) );
     }
 
     onChangeContentTypeList( event ){
-        this.props.chanageCallbacks.toggleOptionType( parseInt(event.target.value) );
+        TourSearchActionCreator.updateContentId(parseInt(event.target.value));
     }
 
     onClickSubmit( e ){
@@ -27,13 +21,9 @@ class SearchFormView extends Component {
         return false;
     }
 
-    toggleState(){
-        this.setState({showDetails:!this.state.showDetails});
-    }
+
 
     render(){
-
-
 
         let contents;
         let sigunList;
@@ -41,9 +31,7 @@ class SearchFormView extends Component {
         let areaValue;
         let sigundoValue;
         let contentList;
-        if( this.state.showDetails ) {
-            console.log("확장");
-            // 배열 정보를 태그로 변환
+        if( this.props.showSearchForm ) {
 
             if(this.props.areas) {
                 optionList = this.props.areas.map( (area, index ) => {
@@ -56,17 +44,17 @@ class SearchFormView extends Component {
             });
 
 
-            if(  this.props.sigungus ) {
+            if( this.props.sigungus ) {
                 sigunList = this.props.sigungus.map( (sigun, index ) => {
                     return <option key={index} value={sigun.code}>{sigun.name}</option>
                 });
             }
 
         }
-
+        //<button className="btn-submit" onClick={this.toggleState.bind(this)}>{ this.state.showDetails ? '닫기':'열기'}</button>
         return(
                 <div className="search-area">
-                    <div className={this.state.showDetails ? "search-area-form-content" : "search-area-form-content hide" }>
+                    <div className={this.props.showSearchForm ? "search-area-form-content" : "search-area-form-content hide" }>
                         <form name="searchOptionForm" action="POST" action="" onSubmit={this.onClickSubmit.bind(this)} >
                             <fieldset>
                                 <label>콘텐츠타입 :
@@ -84,11 +72,9 @@ class SearchFormView extends Component {
                                     {sigunList}
                                 </select>
                                 </label>
-                                <input type="submit" value="검색" />
                             </fieldset>
                         </form>
                     </div>
-                    <button className="btn-submit" onClick={this.toggleState.bind(this)}>{ this.state.showDetails ? '닫기':'열기'}</button>
                 </div>
         );
     }
@@ -96,10 +82,10 @@ class SearchFormView extends Component {
 
 
 SearchFormView.PropTypes = {
-    chanageCallbacks:PropTypes.object,
     contentTypeList :PropTypes.arrayOf( PropTypes.object ),
     sigundos : PropTypes.arrayOf( PropTypes.object ),
-    areas : PropTypes.arrayOf( PropTypes.object )
+    areas : PropTypes.arrayOf( PropTypes.object ),
+    showSearchForm:PropTypes.boolean
 }
 
 export default SearchFormView;

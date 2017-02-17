@@ -48,7 +48,6 @@ let TourSeachActionCreator = {
     },
 
     fetchTourListWithParams( params ){
-        console.log("params", params );
         AppDispatcher.dispatchAsync( TourAPI.fetchTourListWithParams( params ), {
             success:constants.FETCH_TOUR_LIST_SUCCESS,
             failure:constants.FETCH_TOUR_LIST_FAILURE
@@ -64,9 +63,7 @@ let TourSeachActionCreator = {
     },
 
     updateAreaCode( areaCode ){
-
         TourAPI.fetchSigunDos( areaCode ).then( (response) => {
-            console.log( response );
             var sigungus = response.items.item;
             AppDispatcher.dispatch({
                 type:constants.UPDATE_AREA_CODE,
@@ -96,6 +93,22 @@ let TourSeachActionCreator = {
             data:{
                 contentId:contentId
             }
+        });
+    },
+
+    updatePageNo( pageNo ){
+        AppDispatcher.dispatch({
+            type:constants.UPDATE_PAGE_NO,
+            data:{
+                pageNo:pageNo
+            }
+        });
+    },
+
+    toggleSearchForm(){
+        console.log("dee");
+        AppDispatcher.dispatch({
+            type:constants.TOGGLE_SEARCH_FORM
         });
     }
 
