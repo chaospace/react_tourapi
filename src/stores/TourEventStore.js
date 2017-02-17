@@ -74,9 +74,6 @@ class TourEventStore extends ReduceStore {
                 });
             break;
 
-            case constants.FETCH_TOUR_ITEM_DETAIL_SUCCESS:
-                console.log("이벤트 상세", action.data );
-            break;
         }
         return state;
     }
