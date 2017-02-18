@@ -3,7 +3,7 @@ import 'babel-polyfill';
 
 const API_KEY = "Q6MEbeyAP7scqDnkIJT2gUlUj0Fka7fy4xYnWeqOrIr1ri%2B6fiL5HinpEnMyRGym%2Bk5fBDt9YzClTIpQeqaWXA%3D%3D";
 const SEARCH_AREA_URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaCode?ServiceKey=";
-const REST_PARAMS = "&MobileOS=ETC&MobileApp=AppTesting";
+const REST_PARAMS = "&arrange=P&MobileOS=ETC&MobileApp=AppTesting";
 const JSON_TYPE = "&_type=json";
 const AREA_BASE_URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey="
 const EVENT_DETAIL_URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon?ServiceKey="

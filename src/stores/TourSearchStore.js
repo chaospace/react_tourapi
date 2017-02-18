@@ -17,7 +17,7 @@ class TourSearchStore extends ReduceStore {
             sigunguCode:-1,
             contentTypes:[
                 {
-                    name:"관광지선택",
+                    name:"검색타입선택",
                     code:-1
                 },
                 {
