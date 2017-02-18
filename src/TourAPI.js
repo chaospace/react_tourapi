@@ -1,7 +1,7 @@
 import 'whatwg-fetch';
 import 'babel-polyfill';
 
-const API_KEY = "Q6MEbeyAP7scqDnkIJT2gUlUj0Fka7fy4xYnWeqOrIr1ri%2B6fiL5HinpEnMyRGym%2Bk5fBDt9YzClTIpQeqaWXA%3D%3D";
+const API_KEY = "api수정";
 const SEARCH_AREA_URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaCode?ServiceKey=";
 const REST_PARAMS = "&MobileOS=ETC&MobileApp=AppTesting";
 const JSON_TYPE = "&_type=json";
